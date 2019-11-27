@@ -2,7 +2,7 @@
 <frm version="5.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\..\..\xsd_520\frm.xsd">
   <table title="Embranchement" name="branch_point" table="fwa_abgang" key_field="objectid" table_readonly="false">
     <group>
-      <edit title="Nom/numéro" width="160">
+      <edit title="Nom/numéro_testdb" width="160">
         <field>name_nummer</field>
       </edit>
       <edit title="OBJECTID" width="50" left="230" readonly="true">
