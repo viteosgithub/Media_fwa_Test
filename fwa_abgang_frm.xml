@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<frm version="5.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\..\..\xsd_520\frm.xsd">
+  <table title="Embranchement" name="branch_point" table="fwa_abgang" key_field="objectid" table_readonly="false">
+    <group>
+      <edit title="Nom/numéro" width="160">
+        <field>name_nummer</field>
+      </edit>
+      <edit title="OBJECTID" width="50" left="230" readonly="true">
+        <field>objectid</field>
+      </edit>
+      <edit title="Coordonnées X et Y" width="75" readonly="true">
+        <field>hkoord</field>
+        <data_format format_type="float" format="0.000" />
+      </edit>
+      <edit title="" width="75" left="85" readonly="true">
+        <field>vkoord</field>
+        <data_format format_type="float" format="0.000" />
+      </edit>
+      <combobox title="Genre/Localisation" width="160" required="true" filter="idx is not null" order_field="idx">
+        <field>art</field>
+        <lookup_table>fwas_art_abgang</lookup_table>
+        <lookup_key>code</lookup_key>
+        <lookup_desc>description_f</lookup_desc>
+      </combobox>
+      <combobox title="" width="110" left="170" filter="idx is not null" order_field="idx">
+        <field>lage</field>
+        <lookup_table>fwas_lage</lookup_table>
+        <lookup_key>code</lookup_key>
+        <lookup_desc>description_f</lookup_desc>
+      </combobox>
+      <combobox title="Sous-type" width="280" filter="idx is not null" order_field="idx">
+        <field>subart</field>
+        <lookup_table>fwas_subart_abgang</lookup_table>
+        <lookup_key>code</lookup_key>
+        <lookup_desc>description_f</lookup_desc>
+      </combobox>
+      <space_line />
+    </group>
+    <section title="Données" name="data_1">
+      <label text="Hauteur tube principal [m] :" left="-1" />
+      <edit title="Tubage OK" width="100">
+        <field>hoehe1</field>
+        <data_format format_type="float" format="0.000" />
+      </edit>
+      <function_button title="" name="objrelexecute_label_height" width="22" left="100" tooltip="Créer et positionner un label" bitmap="56">
+        <action_function functionname="objrelexecute" parameters="fwat_cre_hoehe_abgang p" />
+      </function_button>
+      <edit title="Axe de tube" width="100" left="220">
+        <field>hoehe2</field>
+        <data_format format_type="float" format="0.000" />
+      </edit>
+      <label text="Hauteur embranchement [m] :" left="-1" />
+      <edit title="Tubage OK" width="100">
+        <field>abgang_hoehe1</field>
+        <data_format format_type="float" format="0.000" />
+      </edit>
+      <edit title="Axe de tube" width="100" left="220">
+        <field>abgang_hoehe2</field>
+        <data_format format_type="float" format="0.000" />
+      </edit>
+      <space_line />
+      <combobox title="Détermin. plani." width="120" filter="idx is not null" order_field="idx">
+        <field>lagebestimmung</field>
+        <lookup_table>fwas_lgenauigkeit</lookup_table>
+        <lookup_key>code</lookup_key>
+        <lookup_desc>description_f</lookup_desc>
+        <paste_object source_field="lagebestimmung" />
+      </combobox>
+      <combobox title="Dét. altimétrique" width="100" left="220" filter="idx is not null" order_field="idx">
+        <field>hoehenbestimmung</field>
+        <lookup_table>fwas_hgenauigkeit</lookup_table>
+        <lookup_key>code</lookup_key>
+        <lookup_desc>description_f</lookup_desc>
+        <paste_object source_field="hoehenbestimmung" />
+      </combobox>
+      <combobox title="Joint" width="120" filter="idx is not null" order_field="idx">
+        <field>abdichtung</field>
+        <lookup_table>fwas_abdichtung</lookup_table>
+        <lookup_key>code</lookup_key>
+        <lookup_desc>description_f</lookup_desc>
+      </combobox>
+      <!-- Extension Viteos -->
+      <space_line dividing_line="true"/>
+      <edit title="X_OBJECTID" width="70" readonly="true">
+        <field>x_objectid</field>
+      </edit>
+      <edit title="" width="220" left="80" readonly="true">
+        <field>U_VITEOS_FEATURECLASS</field>
+      </edit>
+      <combobox title="Geometre" width="160" required="true" filter="idx is not null" order_field="idx">
+        <field>u_geometre</field>
+        <lookup_table>U_FWAS_GEOMETRE</lookup_table>
+        <lookup_key>code</lookup_key>
+        <lookup_desc>description_f</lookup_desc>
+      </combobox>
+      <edit title="Profondeur" width="100">
+        <field>u_tiefe</field>
+        <data_format format_type="float" format="0.000" />
+      </edit>
+    </section>
+    <section title="Administratif" name="administrative">
+      <edit title="Année de construction" width="120">
+        <field>baujahr</field>
+        <data_format format_type="date_as_integer" format="yyyy" />
+      </edit>
+      <combobox title="Propriétaire" width="300" filter="idx is not null" order_field="idx">
+        <field>eigentuemer</field>
+        <lookup_table>fwas_eigentuemer</lookup_table>
+        <lookup_key>code</lookup_key>
+        <lookup_desc>description_f</lookup_desc>
+        <paste_object source_field="eigentuemer" />
+      </combobox>
+      <edit title="Remarque" width="300" height="75" multi_line="true">
+        <field>bemerkung</field>
+      </edit>
+    </section>
+    <section title="Hydraulique/Statique" name="hydraulic_static">
+      <edit title="Pression nominale [bar]" width="60">
+        <field>nenndruck</field>
+        <paste_object source_field="nenndruck" />
+      </edit>
+      <space_line dividing_line="false" />
+      <label text="Noeud hydraulique" left="-1" />
+      <edit title="ID/Numéro" width="60">
+        <field>hydr_knotenref</field>
+        <paste_object source_field="objectid" source_table="fwa_hyd_knoten" />
+      </edit>
+      <edit title="" name="select_hydraulic_node" width="120" left="70">
+        <select>select name_nummer from fwa_hyd_knoten where objectid=[hydr_knotenref]</select>
+      </edit>
+      <button title="" width="22" left="200" readonly="false" tooltip="Ouvrir l'éditeur d'attributs noeud ou créer noeud" bitmap="64">
+        <field>hydr_knotenref</field>
+        <action_gde lookup_table="fwa_hyd_knoten" lookup_key="objectid" create_entries="true" />
+      </button>
+      <function_button title="" name="call_view_hydraulic_node" width="22" left="232" tooltip="Ouvrir la liste de données noeud pour affectation" bitmap="50">
+        <action_function functionname="call" parameters="GeoniscentralClientArc.DataView LoadDefinition hydraulic_node" />
+      </function_button>
+      <label text="Noeud statique" left="-1" />
+      <edit title="ID/Numéro" width="60">
+        <field>stat_knotenref</field>
+        <paste_object source_field="objectid" source_table="fwa_stat_knoten" />
+      </edit>
+      <edit title="" name="select_static_node" width="120" left="70">
+        <select>select name_nummer from fwa_stat_knoten where objectid=[stat_knotenref]</select>
+      </edit>
+      <button title="" width="22" left="200" readonly="false" tooltip="Ouvrir l'éditeur d'attributs noeud ou créer noeud" bitmap="64">
+        <field>stat_knotenref</field>
+        <action_gde lookup_table="fwa_stat_knoten" lookup_key="objectid" create_entries="true" />
+      </button>
+      <function_button title="" name="call_view_static_node" width="22" left="232" tooltip="Ouvrir la liste de données noeud pour affectationAttributeditor Hydraulischer Knoten öffnen oder neuen Hydraulischen Knoten erstellen" bitmap="50">
+        <action_function functionname="call" parameters="GeoniscentralClientArc.DataView LoadDefinition static_node" />
+      </function_button>
+    </section>
+    <section title="Entretien" name="maintenance">
+      <relationbox title="Entretien" width="380" row_count="5">
+        <relation_name>fwa_abgang_unterhalt</relation_name>
+        <column field="objectid" title="ID" width="30" />
+        <column field="art" title="Mesure d'entretien" width="280" />
+        <column field="datum" title="Date" width="60">
+          <data_format format_type="date_as_integer" />
+        </column>
+        <standard_value field_name="obj_code" value="4" />
+        <standard_value field_name="art" value="400" />
+      </relationbox>
+    </section>
+    <section title="Documents" name="document">
+      <relationbox title="Documents" width="380" row_count="6">
+        <relation_name>fwa_abgang_dokument</relation_name>
+        <column field="objectid" title="ID" width="30" />
+        <column field="beschreibung" title="Description" width="250" />
+        <column field="datum" title="Date" width="70">
+          <data_format format_type="date_as_integer" />
+        </column>
+        <multi_action>
+          <link_documents>
+            <link_field>dokument</link_field>
+          </link_documents>
+        </multi_action>
+      </relationbox>
+    </section>
+    <section title="Métadonnées" name="metadata">
+      <edit title="Créé par/le" width="75" readonly="true">
+        <field>user_created</field>
+      </edit>
+      <label text="/" left="78" />
+      <edit title="" width="75" left="85" readonly="true">
+        <field>date_created</field>
+        <data_format format_type="date_as_integer" />
+      </edit>
+      <edit title="Modifié par/le" width="75" readonly="true">
+        <field>user_modified</field>
+      </edit>
+      <label text="/" left="78" />
+      <edit title="" width="75" left="85" readonly="true">
+        <field>date_modified</field>
+        <data_format format_type="date_as_integer" />
+      </edit>
+    </section>
+  </table>
+</frm>
